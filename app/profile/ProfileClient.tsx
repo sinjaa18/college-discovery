@@ -1,5 +1,6 @@
 "use client";
 
+import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 
 type User = {
@@ -9,24 +10,27 @@ type User = {
 };
 
 export default function ProfileClient() {
+  const router = useRouter();
+
   const [user, setUser] = useState<User | null>(null);
 
   useEffect(() => {
     const stored = localStorage.getItem("user");
 
-    if (stored) {
-      setUser(JSON.parse(stored));
+    if (!stored) {
+      router.push("/login");
+      return;
     }
-  }, []);
+
+    setUser(JSON.parse(stored));
+  }, [router]);
 
   function logout() {
     localStorage.removeItem("user");
-
-    window.location.href = "/";
+    router.push("/");
   }
 
   if (!user) {
-    window.location.href = "/login";
     return null;
   }
 
