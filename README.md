@@ -241,7 +241,7 @@ http://localhost:3000
 
 # 🌐 Live Demo
 
-👉 https://college-discovery-7raomuhop-sintus-projects-da78e622.vercel.app/colleges
+👉 https://college-discovery-p11ghxl5m-sintus-projects-da78e622.vercel.app/colleges
 
 ---
 
