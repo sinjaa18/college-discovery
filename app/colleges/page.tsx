@@ -15,7 +15,7 @@ type College = {
 
 async function getColleges(search: string, location: string) {
   const res = await fetch(
-    `http://localhost:3000/api/colleges?search=${search}&location=${location}`,
+    `${process.env.NEXT_PUBLIC_SITE_URL}/api/colleges?search=${search}&location=${location}`,
     { cache: "no-store" },
   );
 
