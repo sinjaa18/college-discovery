@@ -1,10 +1,5 @@
 import "./globals.css";
-import Link from "next/link";
-
-export const metadata = {
-  title: "College Discovery",
-  description: "Find and compare colleges",
-};
+import Navbar from "./Navbar";
 
 export default function RootLayout({
   children,
@@ -14,12 +9,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className="min-h-screen">
-        <nav className="border-b p-4 flex gap-4">
-          <Link href="/colleges">Colleges</Link>
-          <Link href="/saved">Saved</Link>
-          <Link href="/predictor">Predictor</Link>
-        </nav>
-
+        <Navbar />
         {children}
       </body>
     </html>
