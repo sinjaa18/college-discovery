@@ -21,7 +21,6 @@ async function getColleges(search: string, location: string) {
   );
 
   return res.json();
-  console.log(await res.text());
 }
 
 export default async function CollegesPage({

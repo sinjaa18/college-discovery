@@ -24,7 +24,7 @@ export default function PredictorForm() {
     });
 
     setData(await res.json());
-    console.log(await res.text());
+   
   }
 
   return (
