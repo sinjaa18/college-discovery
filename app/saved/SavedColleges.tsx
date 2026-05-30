@@ -24,6 +24,7 @@ export default function SavedColleges() {
 
     const res = await fetch("/api/colleges");
     const data: College[] = await res.json();
+    console.log(await res.text());
 
     setColleges(data.filter((x) => ids.includes(x.id)));
   }

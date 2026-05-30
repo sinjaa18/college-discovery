@@ -3,6 +3,7 @@ import LocationFilter from "./LocationFilter";
 import Link from "next/link";
 import CompareButton from "./CompareButton";
 import SaveButton from "./SaveButton";
+import { prisma } from "@/lib/prisma";
 
 type College = {
   id: number;
@@ -20,6 +21,7 @@ async function getColleges(search: string, location: string) {
   );
 
   return res.json();
+  console.log(await res.text());
 }
 
 export default async function CollegesPage({
@@ -36,7 +38,28 @@ export default async function CollegesPage({
   const search = params.search || "";
   const location = params.location || "";
 
-  const colleges = await getColleges(search, location);
+  const colleges = await prisma.college.findMany({
+    where: {
+      AND: [
+        {
+          name: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        location
+          ? {
+              location: {
+                equals: location,
+              },
+            }
+          : {},
+      ],
+    },
+    orderBy: {
+      rating: "desc",
+    },
+  });
 
   return (
     <div className="max-w-6xl mx-auto p-6">
