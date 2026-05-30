@@ -1,34 +1,174 @@
-import { PrismaClient } from '@prisma/client'
+import { PrismaClient } from "@prisma/client";
 
-const prisma=new PrismaClient()
+const prisma = new PrismaClient();
 
-async function main(){
+async function main() {
   await prisma.college.deleteMany()
   await prisma.college.createMany({
-    data:[
-      {name:"IIT Delhi",location:"Delhi",fees:240000,rating:4.9,overview:"Top engineering institute"},
-      {name:"IIT Bombay",location:"Mumbai",fees:230000,rating:4.9,overview:"Premier IIT"},
-      {name:"IIT Madras",location:"Chennai",fees:220000,rating:4.8,overview:"Leading IIT"},
-      {name:"IIT Kanpur",location:"Kanpur",fees:210000,rating:4.7,overview:"Strong placements"},
-      {name:"IIT Kharagpur",location:"Kharagpur",fees:200000,rating:4.7,overview:"Oldest IIT"},
-      {name:"NIT Trichy",location:"Trichy",fees:170000,rating:4.6,overview:"Top NIT"},
-      {name:"NIT Surathkal",location:"Mangalore",fees:165000,rating:4.5,overview:"Excellent campus"},
-      {name:"NIT Warangal",location:"Warangal",fees:160000,rating:4.5,overview:"Popular NIT"},
-      {name:"BITS Pilani",location:"Pilani",fees:500000,rating:4.8,overview:"Private institute"},
-      {name:"IIIT Hyderabad",location:"Hyderabad",fees:350000,rating:4.8,overview:"Strong CS"},
-      {name:"DTU",location:"Delhi",fees:190000,rating:4.4,overview:"State university"},
-      {name:"NSUT",location:"Delhi",fees:185000,rating:4.4,overview:"Good placements"},
-      {name:"VIT Vellore",location:"Vellore",fees:250000,rating:4.2,overview:"Large private college"},
-      {name:"SRM",location:"Chennai",fees:280000,rating:4.1,overview:"Private university"},
-      {name:"MIT Manipal",location:"Manipal",fees:320000,rating:4.3,overview:"Popular private college"}
-    ]
-  })
+    data: [
+      {
+        name: "IIT Bombay",
+        location: "Mumbai",
+        fees: 230000,
+        rating: 4.9,
+        overview: "Top IIT with strong research and startup culture.",
+        courses: "CSE, Electrical, Mechanical, Chemical",
+        placements: "Average 24 LPA, Highest 1.2 Cr",
+        closingRank: 500,
+        exam: "JEE Advanced",
+      },
+      {
+        name: "IIT Delhi",
+        location: "Delhi",
+        fees: 240000,
+        rating: 4.9,
+        overview:
+          "Premier engineering institute known for academics and placements.",
+        courses: "CSE, ECE, Mechanical, Civil",
+        placements: "Average 25 LPA, Highest 1 Cr+",
+        closingRank: 800,
+        exam: "JEE Advanced",
+      },
+      {
+        name: "IIT Madras",
+        location: "Chennai",
+        fees: 220000,
+        rating: 4.8,
+        overview: "Leading institute with strong innovation ecosystem.",
+        courses: "CSE, ECE, Mechanical, Aerospace",
+        placements: "Average 22 LPA, Highest 1 Cr",
+        closingRank: 1200,
+        exam: "JEE Advanced",
+      },
+      {
+        name: "IIT Kanpur",
+        location: "Kanpur",
+        fees: 210000,
+        rating: 4.7,
+        overview: "Known for academic excellence and research.",
+        courses: "CSE, ECE, Civil, Mechanical",
+        placements: "Average 21 LPA, Highest 90 LPA",
+        closingRank: 1800,
+        exam: "JEE Advanced",
+      },
+      {
+        name: "IIIT Hyderabad",
+        location: "Hyderabad",
+        fees: 350000,
+        rating: 4.8,
+        overview: "Elite institute focused on computer science.",
+        courses: "CSE, ECE, AI, Data Science",
+        placements: "Average 30 LPA, Highest 70 LPA",
+        closingRank: 3500,
+        exam: "JEE Main",
+      },
+      {
+        name: "NIT Trichy",
+        location: "Trichy",
+        fees: 170000,
+        rating: 4.6,
+        overview: "Best NIT with excellent placement record.",
+        courses: "CSE, ECE, Mechanical, Civil",
+        placements: "Average 15 LPA, Highest 52 LPA",
+        closingRank: 7000,
+        exam: "JEE Main",
+      },
+      {
+        name: "NIT Surathkal",
+        location: "Mangalore",
+        fees: 165000,
+        rating: 4.5,
+        overview: "Popular NIT with coastal campus.",
+        courses: "CSE, IT, Mechanical, Civil",
+        placements: "Average 14 LPA, Highest 50 LPA",
+        closingRank: 9000,
+        exam: "JEE Main",
+      },
+      {
+        name: "NIT Warangal",
+        location: "Warangal",
+        fees: 160000,
+        rating: 4.5,
+        overview: "Strong engineering programs and placements.",
+        courses: "CSE, ECE, Mechanical, Civil",
+        placements: "Average 13 LPA, Highest 45 LPA",
+        closingRank: 12000,
+        exam: "JEE Main",
+      },
+      {
+        name: "DTU",
+        location: "Delhi",
+        fees: 190000,
+        rating: 4.4,
+        overview: "Leading state engineering university.",
+        courses: "CSE, IT, Mechanical, Civil",
+        placements: "Average 12 LPA, Highest 50 LPA",
+        closingRank: 18000,
+        exam: "JEE Main",
+      },
+      {
+        name: "NSUT",
+        location: "Delhi",
+        fees: 185000,
+        rating: 4.4,
+        overview: "Strong placement-focused engineering college.",
+        courses: "CSE, IT, ECE, Mechanical",
+        placements: "Average 13 LPA, Highest 55 LPA",
+        closingRank: 22000,
+        exam: "JEE Main",
+      },
+      {
+        name: "BITS Pilani",
+        location: "Pilani",
+        fees: 500000,
+        rating: 4.8,
+        overview: "Top private engineering institution.",
+        courses: "CSE, ECE, Mechanical, Pharmacy",
+        placements: "Average 20 LPA, Highest 60 LPA",
+        closingRank: 25000,
+        exam: "BITSAT",
+      },
+      {
+        name: "VIT Vellore",
+        location: "Vellore",
+        fees: 250000,
+        rating: 4.2,
+        overview: "Large private university with diverse programs.",
+        courses: "CSE, IT, ECE, Mechanical",
+        placements: "Average 9 LPA, Highest 45 LPA",
+        closingRank: 45000,
+        exam: "JEE Main",
+      },
+      {
+        name: "MIT Manipal",
+        location: "Manipal",
+        fees: 320000,
+        rating: 4.3,
+        overview: "Well-known private engineering institution.",
+        courses: "CSE, IT, ECE, Mechanical",
+        placements: "Average 10 LPA, Highest 43 LPA",
+        closingRank: 65000,
+        exam: "MET",
+      },
+      {
+        name: "SRM",
+        location: "Chennai",
+        fees: 280000,
+        rating: 4.1,
+        overview: "Popular private university in South India.",
+        courses: "CSE, IT, ECE, MBA",
+        placements: "Average 8 LPA, Highest 40 LPA",
+        closingRank: 90000,
+        exam: "SRMJEEE",
+      },
+    ],
+  });
 }
 
 main()
-.then(()=>prisma.$disconnect())
-.catch(async(e)=>{
-  console.error(e)
-  await prisma.$disconnect()
-  process.exit(1)
-})
+  .then(() => prisma.$disconnect())
+  .catch(async (e) => {
+    console.error(e);
+    await prisma.$disconnect();
+    process.exit(1);
+  });

@@ -1,5 +1,8 @@
 import SearchBox from "./SearchBox";
 import LocationFilter from "./LocationFilter";
+import Link from "next/link";
+import CompareButton from "./CompareButton";
+import SaveButton from "./SaveButton";
 
 type College = {
   id: number;
@@ -25,6 +28,8 @@ export default async function CollegesPage({
   searchParams: Promise<{
     search?: string;
     location?: string;
+    c1?: string;
+    c2?: string;
   }>;
 }) {
   const params = await searchParams;
@@ -40,14 +45,36 @@ export default async function CollegesPage({
       <SearchBox />
       <LocationFilter />
 
+      {params.c1 && params.c2 && (
+        <Link
+          href={`/compare?c1=${params.c1}&c2=${params.c2}`}
+          className="inline-block mb-4 px-4 py-2 border rounded"
+        >
+          View Comparison
+        </Link>
+      )}
+
+      <div className="grid gap-4"></div>
       <div className="grid gap-4">
         {colleges.map((college: College) => (
-          <div key={college.id} className="border rounded-lg p-4">
+          <div
+            key={college.id}
+            className="border rounded-lg p-4 hover:shadow-md transition"
+          >
             <h2 className="text-xl font-semibold">{college.name}</h2>
 
             <p>{college.location}</p>
             <p>Fees ₹{college.fees}</p>
             <p>⭐ {college.rating}</p>
+            <p className="mt-2 text-sm text-gray-600">{college.overview}</p>
+            <SaveButton id={college.id} />
+            <Link
+              href={`/college/${college.id}`}
+              className="inline-block mt-3 px-4 py-2 border rounded"
+            >
+              View Details
+            </Link>
+            <CompareButton id={college.id} />
           </div>
         ))}
       </div>

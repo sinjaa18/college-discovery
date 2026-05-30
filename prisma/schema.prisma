@@ -13,11 +13,15 @@ datasource db {
 }
 
 model College {
-  id        Int      @id @default(autoincrement())
-  name      String
-  location  String
-  fees      Int
-  rating    Float
-  overview  String
-  createdAt DateTime @default(now())
+  id          Int @id @default(autoincrement())
+  name        String
+  location    String
+  fees        Int
+  rating      Float
+  overview    String
+  courses     String
+  placements  String
+  closingRank Int
+  exam        String
+  createdAt   DateTime @default(now())
 }
